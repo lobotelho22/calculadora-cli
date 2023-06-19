@@ -1,6 +1,6 @@
 class Message
 {
-    public Usuario? user;
+    private Usuario? user;
 
     public Message()
     {
