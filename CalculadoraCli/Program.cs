@@ -2,7 +2,10 @@
 {
     static void Main(string[] args)
     {
-        Console.Clear();
-        Console.WriteLine("Aplicativo em construção...");
+        Message inicio = new Message();
+        inicio.Welcome();
+        inicio.Instrucoes();
+
+        
     }
 }
