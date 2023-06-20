@@ -2,7 +2,7 @@ class Calculo
 {
     private decimal parcela01;
     private decimal parcela02;
-    private static Tuple<string, decimal>[] resultados = {}; 
+    private static List<Tuple<string, decimal>> resultados = new List<Tuple<string, decimal>>(); 
 
     public Calculo(decimal userParcela01, decimal userParcela02)
     {
@@ -12,10 +12,9 @@ class Calculo
 
     private void adicionaHistoricoResultados(decimal resultado, string operacao)
     {
-        int index = resultados.Length;
         string operacaoDone = $"${this.parcela01} ${operacao} {this.parcela02}"; 
         var historicoResultado = new Tuple<string, decimal> (operacaoDone, resultado);
-        resultados[index] = historicoResultado;
+        resultados.Add(historicoResultado);
     }
 
     public decimal Soma() {

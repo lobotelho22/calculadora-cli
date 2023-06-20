@@ -54,6 +54,7 @@ class Message
         ConsoleKeyInfo selecao = Console.ReadKey();
         while(selecao.Key != ConsoleKey.Q) {
             if (selecao.Key == ConsoleKey.D1 ) {
+                Console.Clear();
                 Calcular();
                 selecao = Console.ReadKey();
             }
@@ -80,9 +81,26 @@ class Message
         Console.WriteLine("Informe a Operação desejada");
         Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
         ConsoleKeyInfo operacao = Console.ReadKey();
-        // Console.WriteLine($"{operacao.KeyChar}");
-        Console.WriteLine("Informe a segunda parcela da operação: ");
+        ConsoleKey[] validOperation = { ConsoleKey.A, ConsoleKey.S, ConsoleKey.M, ConsoleKey.D };
+        while (!validOperation.Contains(operacao.Key)) {
+            Console.WriteLine("\nInforme uma operação válida!");
+            Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
+            operacao = Console.ReadKey();
+        }
+        Console.WriteLine("\nInforme a segunda parcela da operação: ");
         decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
-        
+
+        Calculo calcular = new Calculo(parcela01, parcela02);
+
+        switch (operacao.KeyChar.ToString().ToUpper())
+        {
+            case "A":
+                decimal resultado = calcular.Soma();
+                Console.WriteLine(resultado);
+                break;
+            default:
+                Console.WriteLine("Yeah!");
+                break;
+        }
     }
 }
