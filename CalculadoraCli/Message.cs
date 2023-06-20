@@ -44,4 +44,45 @@ class Message
         while(Console.ReadKey().Key != ConsoleKey.Enter) {};
         Console.Clear();       
     }
+
+    public void MainMenu()
+    {
+        Console.WriteLine("Digite 1:\tRealizar Cálculo");
+        Console.WriteLine("Digite 2:\tRecuperar o Último Valor Para Novo Cálculo");
+        Console.WriteLine("Digite 3:\tRecuperar o Histórico de Operações");
+        Console.WriteLine("Digite Q:\tSaída da Calculadora");
+        ConsoleKeyInfo selecao = Console.ReadKey();
+        while(selecao.Key != ConsoleKey.Q) {
+            if (selecao.Key == ConsoleKey.D1 ) {
+                Calcular();
+                selecao = Console.ReadKey();
+            }
+            else if (selecao.Key == ConsoleKey.D2) {
+                Console.WriteLine("\nDOIS!");
+                selecao = Console.ReadKey();
+            }
+            else if (selecao.Key == ConsoleKey.D3) {
+                Console.WriteLine("\nTRÊS!");
+                selecao = Console.ReadKey();
+            }
+            else {
+                Console.WriteLine("");
+                selecao = Console.ReadKey();
+            }
+        }
+        Console.Clear();
+    }
+
+    public void Calcular()
+    {
+        Console.Write("Informe a primeira parcela da operação: ");
+        decimal parcela01 = Convert.ToDecimal(Console.ReadLine());
+        Console.WriteLine("Informe a Operação desejada");
+        Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
+        ConsoleKeyInfo operacao = Console.ReadKey();
+        // Console.WriteLine($"{operacao.KeyChar}");
+        Console.WriteLine("Informe a segunda parcela da operação: ");
+        decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
+        
+    }
 }

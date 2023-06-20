@@ -6,6 +6,6 @@
         inicio.Welcome();
         inicio.Instrucoes();
 
-        
+        inicio.MainMenu();
     }
 }
