@@ -51,27 +51,6 @@ class Message
         Console.WriteLine("Digite 2:\tRecuperar o Último Valor Para Novo Cálculo");
         Console.WriteLine("Digite 3:\tRecuperar o Histórico de Operações");
         Console.WriteLine("Digite Q:\tSaída da Calculadora");
-        ConsoleKeyInfo selecao = Console.ReadKey();
-        while(selecao.Key != ConsoleKey.Q) {
-            if (selecao.Key == ConsoleKey.D1 ) {
-                Console.Clear();
-                Calcular();
-                selecao = Console.ReadKey();
-            }
-            else if (selecao.Key == ConsoleKey.D2) {
-                Console.WriteLine("\nDOIS!");
-                selecao = Console.ReadKey();
-            }
-            else if (selecao.Key == ConsoleKey.D3) {
-                Console.WriteLine("\nTRÊS!");
-                selecao = Console.ReadKey();
-            }
-            else {
-                Console.WriteLine("");
-                selecao = Console.ReadKey();
-            }
-        }
-        Console.Clear();
     }
 
     public void Calcular()
@@ -124,5 +103,10 @@ class Message
                 Console.WriteLine("Yeah!");
                 break;
         }
+    
+        Console.WriteLine("Pressione ENTER para retornar ao menu principal...");
+        while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+        Console.Clear();
+        MainMenu();
     }
 }
