@@ -70,39 +70,8 @@ class Message
         decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
 
         Calculo calcular = new Calculo(parcela01, parcela02);
-        decimal resultado;
 
-        switch (operacao.KeyChar.ToString().ToUpper())
-        {
-            case "A":
-                resultado = calcular.Soma();
-                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
-                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
-                Console.WriteLine(resultado);
-                break;
-            case "S":
-                resultado = calcular.Subtracao();
-                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
-                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
-                Console.WriteLine(resultado);
-                break;
-            case "M":
-                resultado = calcular.Multiplicacao();
-                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
-                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
-                Console.WriteLine(resultado);
-                break;
-            case "D":
-                (decimal?, string) resultadoDiv = calcular.Divisao();
-                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
-                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
-                if (resultadoDiv.Item1 == null) { Console.WriteLine(resultadoDiv.Item2); }
-                else {Console.WriteLine(resultadoDiv.Item1);}
-                break;
-            default:
-                Console.WriteLine("Yeah!");
-                break;
-        }
+        calcular.Executar(operacao.KeyChar.ToString().ToUpper());
     
         Console.WriteLine("Pressione ENTER para retornar ao menu principal...");
         while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}

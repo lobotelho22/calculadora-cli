@@ -51,4 +51,41 @@ class Calculo
         adicionaHistoricoResultados(resultado, "/");
         return (resultado, "");
     }
+
+    public void Executar(string operacao)
+    {
+        decimal resultado;
+
+        switch (operacao)
+        {
+            case "A":
+                resultado = Soma();
+                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
+                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+                Console.WriteLine(resultado);
+                break;
+            case "S":
+                resultado = Subtracao();
+                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
+                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+                Console.WriteLine(resultado);
+                break;
+            case "M":
+                resultado = Multiplicacao();
+                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
+                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+                Console.WriteLine(resultado);
+                break;
+            case "D":
+                (decimal?, string) resultadoDiv = Divisao();
+                Console.WriteLine("Pressione ENTER para ver o resultado...\n");
+                while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+                if (resultadoDiv.Item1 == null) { Console.WriteLine(resultadoDiv.Item2); }
+                else {Console.WriteLine(resultadoDiv.Item1);}
+                break;
+            default:
+                Console.WriteLine("Yeah!");
+                break;
+        }
+    }
 }
