@@ -20,10 +20,13 @@ class Calculo
     public static void obterHistorico() {
         Tuple<string, decimal>[] resultArr = resultados.ToArray();
         if (resultArr.Length > 0) {
+            Console.WriteLine("\t Operação\t Resultado");
+            Console.WriteLine("\t============\t===========");
             foreach (Tuple<string, decimal> T in resultArr) {
-                Console.WriteLine(T.Item1);
-                Console.WriteLine(T.Item2);
+                Console.WriteLine($"\t {T.Item1}\t\t {T.Item2}");
             }
+        } else {
+            Console.WriteLine("Ainda não há operações no histórico\n\n\n");
         }
     }
 
@@ -82,9 +85,6 @@ class Calculo
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
                 if (resultadoDiv.Item1 == null) { Console.WriteLine(resultadoDiv.Item2); }
                 else {Console.WriteLine(resultadoDiv.Item1);}
-                break;
-            default:
-                Console.WriteLine("Yeah!");
                 break;
         }
     }

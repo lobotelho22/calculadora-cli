@@ -73,9 +73,22 @@ class Message
 
         calcular.Executar(operacao.KeyChar.ToString().ToUpper());
     
+        RetornarAoMenu();
+    }
+
+    public void ExibirHistorico() {
+        Console.WriteLine("Pressione ENTER para exibir a lista do histórico de operações...");
+        while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+        Calculo.obterHistorico();
+        RetornarAoMenu();
+    }
+
+    private void RetornarAoMenu() {
         Console.WriteLine("Pressione ENTER para retornar ao menu principal...");
         while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
         Console.Clear();
         MainMenu();
+        Console.WriteLine("\n");
+        Calculo.obterHistorico();
     }
 }

@@ -20,7 +20,8 @@
                 selecao = Console.ReadKey();
             }
             else if (selecao.Key == ConsoleKey.D3) {
-                Console.WriteLine("\nTRÊS!");
+                Console.Clear();
+                inicio.ExibirHistorico();
                 selecao = Console.ReadKey();
             }
             else {
