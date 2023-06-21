@@ -16,7 +16,8 @@
                 selecao = Console.ReadKey();
             }
             else if (selecao.Key == ConsoleKey.D2) {
-                Console.WriteLine("\nDOIS!");
+                Console.Clear();
+                inicio.RecuperarHistorico();                
                 selecao = Console.ReadKey();
             }
             else if (selecao.Key == ConsoleKey.D3) {

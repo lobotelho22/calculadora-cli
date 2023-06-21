@@ -83,6 +83,38 @@ class Message
         RetornarAoMenu();
     }
 
+    public void RecuperarHistorico() {
+        (decimal, string) valorHistorico = Calculo.recuperarValor();
+        if (valorHistorico.Item2 != ""){
+            Console.WriteLine(valorHistorico.Item2);
+            RetornarAoMenu();
+        } else {
+            decimal parcelaRecuperada = valorHistorico.Item1;
+            Console.WriteLine($"O valor recuperado é {parcelaRecuperada}");
+            Console.WriteLine("Você deseja utilizar o valor em qual parcela?");
+            Console.WriteLine("\t1 - Primeira Parcela");
+            Console.WriteLine("\t2 - Segunda Parcela");
+            ConsoleKeyInfo opcaoSelecionada = Console.ReadKey(true);
+            ConsoleKey[] opcoesValidas = {ConsoleKey.D1, ConsoleKey.D2};
+            while (!opcoesValidas.Contains(opcaoSelecionada.Key)) {
+                Console.Clear();
+                Console.WriteLine("\nSelecione uma opção válida:");
+                Console.WriteLine("Você deseja utilizar o valor em qual parcela?");
+                Console.WriteLine("\t1 - Primeira Parcela");
+                Console.WriteLine("\t2 - Segunda Parcela");
+                opcaoSelecionada = Console.ReadKey(true);
+            }
+                if (opcaoSelecionada.KeyChar == '1') {
+                    Console.WriteLine("Opção 1");
+                }
+                if (opcaoSelecionada.KeyChar == '2') {
+                    Console.WriteLine("Opção 2");
+                }
+
+            RetornarAoMenu();
+        }
+    }
+
     private void RetornarAoMenu() {
         Console.WriteLine("Pressione ENTER para retornar ao menu principal...");
         while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}

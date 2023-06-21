@@ -30,6 +30,17 @@ class Calculo
         }
     }
 
+    public static (decimal, string) recuperarValor() {
+        Tuple<string, decimal>[] resultArr = resultados.ToArray();
+        if (resultArr.Length > 0) {
+            int index = resultArr.Length - 1;
+            return (resultArr[index].Item2, "");
+        } else {
+            string semHistorico = "Ainda não há operações no histórico\n\n\n";
+            return (0, semHistorico);
+        }
+    }
+
     public decimal Soma() {
         decimal resultado = this.parcela01 + this.parcela02;
         adicionaHistoricoResultados(resultado, "+");
