@@ -44,4 +44,51 @@ class Message
         while(Console.ReadKey().Key != ConsoleKey.Enter) {};
         Console.Clear();       
     }
+
+    public void MainMenu()
+    {
+        Console.WriteLine("Digite 1:\tRealizar Cálculo");
+        Console.WriteLine("Digite 2:\tRecuperar o Último Valor Para Novo Cálculo");
+        Console.WriteLine("Digite 3:\tRecuperar o Histórico de Operações");
+        Console.WriteLine("Digite Q:\tSaída da Calculadora");
+    }
+
+    public void Calcular()
+    {
+        Console.Write("Informe a primeira parcela da operação: ");
+        decimal parcela01 = Convert.ToDecimal(Console.ReadLine());
+        Console.WriteLine("Informe a Operação desejada");
+        Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
+        ConsoleKeyInfo operacao = Console.ReadKey();
+        ConsoleKey[] validOperation = { ConsoleKey.A, ConsoleKey.S, ConsoleKey.M, ConsoleKey.D };
+        while (!validOperation.Contains(operacao.Key)) {
+            Console.WriteLine("\nInforme uma operação válida!");
+            Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
+            operacao = Console.ReadKey();
+        }
+        Console.WriteLine("\nInforme a segunda parcela da operação: ");
+        decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
+
+        Calculo calcular = new Calculo(parcela01, parcela02);
+
+        calcular.Executar(operacao.KeyChar.ToString().ToUpper());
+    
+        RetornarAoMenu();
+    }
+
+    public void ExibirHistorico() {
+        Console.WriteLine("Pressione ENTER para exibir a lista do histórico de operações...");
+        while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+        Calculo.obterHistorico();
+        RetornarAoMenu();
+    }
+
+    private void RetornarAoMenu() {
+        Console.WriteLine("Pressione ENTER para retornar ao menu principal...");
+        while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+        Console.Clear();
+        MainMenu();
+        Console.WriteLine("\n");
+        Calculo.obterHistorico();
+    }
 }
