@@ -32,4 +32,5 @@ class Validacao
 
             return opcaoSelecionada;
     }
+
 }

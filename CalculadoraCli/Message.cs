@@ -24,7 +24,7 @@ class Message
         Console.WriteLine($"simples, para as quatro operações");
         Console.WriteLine($"\nÉ algo rudimentar, para treino");
         Console.WriteLine($"das minhas habilidades em C# e POO.");
-        Console.WriteLine($"\nObrigado pela visita! :)");
+        Console.WriteLine($"\nObrigado pela visita! :");
 
         Console.WriteLine($"===============================");
 
@@ -63,7 +63,9 @@ class Message
     public void Calcular()
     {
         Console.Write("Informe a primeira parcela da operação: ");
-        decimal parcela01 = Convert.ToDecimal(Console.ReadLine());
+ 
+        decimal parcela01 = Calculo.ObterParcela();
+ 
         Console.WriteLine("Informe a Operação desejada");
         Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
         ConsoleKeyInfo operacao = Console.ReadKey();
@@ -71,10 +73,10 @@ class Message
         operacao = Validacao.ValidarOperacao(operacao);
 
         Console.WriteLine("\nInforme a segunda parcela da operação: ");
-        decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
+ 
+        decimal parcela02 = Calculo.ObterParcela();
 
         Calculo calcular = new Calculo(parcela01, parcela02);
-
         calcular.Executar(operacao.KeyChar.ToString().ToUpper());
     
         RetornarAoMenu();
@@ -90,54 +92,68 @@ class Message
         RetornarAoMenu();
     }
 
+    private void RecuperarPrimeiraParcela(decimal parcelaRecuperada) {
+        Console.Clear();
+        Console.WriteLine($"Primeira parcela: {parcelaRecuperada}");
+        Console.WriteLine("Informe a Operação desejada");
+        Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
+        
+        ConsoleKeyInfo operacao = Console.ReadKey();        
+        operacao = Validacao.ValidarOperacao(operacao);
+
+        Console.WriteLine("\nInforme a segunda parcela da operação: ");
+        decimal parcela02 = Calculo.ObterParcela();
+
+        Calculo calcular = new Calculo(parcelaRecuperada, parcela02);
+
+        calcular.Executar(operacao.KeyChar.ToString().ToUpper());
+    }
+
+    private void RecuperarSegundaParcela(decimal parcelaRecuperada)
+    {
+        Console.Clear();
+
+        Console.Write("Informe a primeira parcela da operação: ");
+        
+        decimal parcela01 = Calculo.ObterParcela();
+
+        Console.WriteLine("Informe a Operação desejada");
+        Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
+        
+        ConsoleKeyInfo operacao = Console.ReadKey();            
+        operacao = Validacao.ValidarOperacao(operacao);
+
+        Console.WriteLine($"\nSegunda parcela: {parcelaRecuperada}");
+
+        Calculo calcular = new Calculo(parcela01, parcelaRecuperada);
+
+        calcular.Executar(operacao.KeyChar.ToString().ToUpper());
+    }
+
     public void RecuperarHistorico() {
         (decimal, string) valorHistorico = Calculo.recuperarValor();
-        if (valorHistorico.Item2 != ""){
+        
+        if (valorHistorico.Item2 != "")
+        {
             Console.WriteLine(valorHistorico.Item2);
             RetornarAoMenu();
-        } else {
+        }
+        else
+        {
             decimal parcelaRecuperada = valorHistorico.Item1;
+            
             Console.WriteLine($"O valor recuperado é {parcelaRecuperada}");
             Console.WriteLine("Você deseja utilizar o valor em qual parcela?");
             Console.WriteLine("\t1 - Primeira Parcela");
             Console.WriteLine("\t2 - Segunda Parcela");
+            
             ConsoleKeyInfo opcaoSelecionada = Console.ReadKey(true);
-
+            
             opcaoSelecionada = Validacao.opcaoParcela(opcaoSelecionada);
 
-            if (opcaoSelecionada.KeyChar == '1') {
-                Console.Clear();
-                Console.WriteLine($"Primeira parcela: {parcelaRecuperada}");
-                Console.WriteLine("Informe a Operação desejada");
-                Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
-                ConsoleKeyInfo operacao = Console.ReadKey();
-                
-                operacao = Validacao.ValidarOperacao(operacao);
-
-                Console.WriteLine("\nInforme a segunda parcela da operação: ");
-                decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
-
-                Calculo calcular = new Calculo(parcelaRecuperada, parcela02);
-
-                calcular.Executar(operacao.KeyChar.ToString().ToUpper());
-
-            }
-                if (opcaoSelecionada.KeyChar == '2') {
-                    Console.Clear();
-                    Console.Write("Informe a primeira parcela da operação: ");
-                    decimal parcela01 = Convert.ToDecimal(Console.ReadLine());
-                    Console.WriteLine("Informe a Operação desejada");
-                    Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
-                    ConsoleKeyInfo operacao = Console.ReadKey();
-                    
-                    operacao = Validacao.ValidarOperacao(operacao);
-
-                    Console.WriteLine($"\nSegunda parcela: {parcelaRecuperada}");
-
-                    Calculo calcular = new Calculo(parcela01, parcelaRecuperada);
-
-                    calcular.Executar(operacao.KeyChar.ToString().ToUpper());
-                }
+            if (opcaoSelecionada.KeyChar == '1') { RecuperarPrimeiraParcela(parcelaRecuperada); }
+            
+            if (opcaoSelecionada.KeyChar == '2') { RecuperarSegundaParcela(parcelaRecuperada); }
 
             RetornarAoMenu();
         }
@@ -145,9 +161,12 @@ class Message
 
     private void RetornarAoMenu() {
         Console.WriteLine("Pressione ENTER para retornar ao menu principal...");
+        
         while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+        
         Console.Clear();
         MainMenu();
+        
         Console.WriteLine("\n");
         Calculo.obterHistorico();
     }

@@ -10,6 +10,20 @@ class Calculo
         this.parcela02 = userParcela02;
     }
 
+    public static decimal ObterParcela()
+    {
+        decimal decimalParcela;
+        string? parcela = Console.ReadLine();
+        
+        while(!Decimal.TryParse(parcela, out decimalParcela))
+        {
+            Console.Write("\nInforme um valor numérico válido: ");
+            parcela = Console.ReadLine();
+        }
+        
+        return decimalParcela;
+    }
+
     private void adicionaHistoricoResultados(decimal resultado, string operacao)
     {
         string operacaoDone = $"{this.parcela01} {operacao} {this.parcela02}";
