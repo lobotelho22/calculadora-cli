@@ -102,27 +102,18 @@ class Message
             Console.WriteLine("\t1 - Primeira Parcela");
             Console.WriteLine("\t2 - Segunda Parcela");
             ConsoleKeyInfo opcaoSelecionada = Console.ReadKey(true);
-            ConsoleKey[] opcoesValidas = {ConsoleKey.D1, ConsoleKey.D2};
-            while (!opcoesValidas.Contains(opcaoSelecionada.Key)) {
+
+            opcaoSelecionada = Validacao.opcaoParcela(opcaoSelecionada);
+
+            if (opcaoSelecionada.KeyChar == '1') {
                 Console.Clear();
-                Console.WriteLine("\nSelecione uma opção válida:");
-                Console.WriteLine("Você deseja utilizar o valor em qual parcela?");
-                Console.WriteLine("\t1 - Primeira Parcela");
-                Console.WriteLine("\t2 - Segunda Parcela");
-                opcaoSelecionada = Console.ReadKey(true);
-            }
-                if (opcaoSelecionada.KeyChar == '1') {
-                    Console.Clear();
-                    Console.WriteLine($"Primeira parcela: {parcelaRecuperada}");
-                    Console.WriteLine("Informe a Operação desejada");
+                Console.WriteLine($"Primeira parcela: {parcelaRecuperada}");
+                Console.WriteLine("Informe a Operação desejada");
                 Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
                 ConsoleKeyInfo operacao = Console.ReadKey();
-                ConsoleKey[] validOperation = { ConsoleKey.A, ConsoleKey.S, ConsoleKey.M, ConsoleKey.D };
-                while (!validOperation.Contains(operacao.Key)) {
-                    Console.WriteLine("\nInforme uma operação válida!");
-                    Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
-                    operacao = Console.ReadKey();
-                }
+                
+                operacao = Validacao.ValidarOperacao(operacao);
+
                 Console.WriteLine("\nInforme a segunda parcela da operação: ");
                 decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
 
@@ -130,7 +121,7 @@ class Message
 
                 calcular.Executar(operacao.KeyChar.ToString().ToUpper());
 
-                }
+            }
                 if (opcaoSelecionada.KeyChar == '2') {
                     Console.Clear();
                     Console.Write("Informe a primeira parcela da operação: ");
@@ -138,12 +129,9 @@ class Message
                     Console.WriteLine("Informe a Operação desejada");
                     Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
                     ConsoleKeyInfo operacao = Console.ReadKey();
-                    ConsoleKey[] validOperation = { ConsoleKey.A, ConsoleKey.S, ConsoleKey.M, ConsoleKey.D };
-                    while (!validOperation.Contains(operacao.Key)) {
-                        Console.WriteLine("\nInforme uma operação válida!");
-                        Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
-                        operacao = Console.ReadKey();
-                    }
+                    
+                    operacao = Validacao.ValidarOperacao(operacao);
+
                     Console.WriteLine($"\nSegunda parcela: {parcelaRecuperada}");
 
                     Calculo calcular = new Calculo(parcela01, parcelaRecuperada);

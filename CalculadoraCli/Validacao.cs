@@ -13,4 +13,23 @@ class Validacao
 
         return operacao;
     }
+
+    public static ConsoleKeyInfo opcaoParcela(ConsoleKeyInfo opcaoSelecionada)
+    {
+            ConsoleKey[] opcoesValidas = {ConsoleKey.D1, ConsoleKey.D2};
+    
+            while (!opcoesValidas.Contains(opcaoSelecionada.Key))
+            {
+                Console.Clear();
+            
+                Console.WriteLine("\nSelecione uma opção válida:");
+                Console.WriteLine("Você deseja utilizar o valor em qual parcela?");
+                Console.WriteLine("\t1 - Primeira Parcela");
+                Console.WriteLine("\t2 - Segunda Parcela");
+            
+                opcaoSelecionada = Console.ReadKey(true);
+            }
+
+            return opcaoSelecionada;
+    }
 }
