@@ -29,6 +29,8 @@ class Calculo
             {
                 Console.WriteLine($"\t {T.Item1}\t\t {T.Item2}");
             }
+
+            Console.WriteLine();
         }
         else 
         {

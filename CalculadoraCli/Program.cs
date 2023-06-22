@@ -7,9 +7,10 @@
         inicio.Instrucoes();
 
         inicio.MainMenu();
-
         ConsoleKeyInfo selecao = Console.ReadKey();
+        
         while(selecao.Key != ConsoleKey.Q) {
+        
             if (selecao.Key == ConsoleKey.D1 ) {
                 Console.Clear();
                 inicio.Calcular();
@@ -30,6 +31,7 @@
                 selecao = Console.ReadKey();
             }
         }
+        
         Console.Clear();
     }
 }

@@ -11,20 +11,27 @@ class Message
     public void Welcome()
     {
         Console.Clear();
+
         string welcome = (this.user!.Sexo == 'm')
             ? $"Bem-Vindo, {this.user.Nome}"
             : $"Bem-Vinda, {this.user.Nome}";
+
         Console.WriteLine($"===============================");
         Console.WriteLine($"\t{welcome}");
         Console.WriteLine($"===============================");
-        Console.WriteLine("\n");
+
         Console.WriteLine($"Essa é uma calculadora CLI, bem");
         Console.WriteLine($"simples, para as quatro operações");
         Console.WriteLine($"\nÉ algo rudimentar, para treino");
         Console.WriteLine($"das minhas habilidades em C# e POO.");
         Console.WriteLine($"\nObrigado pela visita! :)");
+
+        Console.WriteLine($"===============================");
+
         Console.WriteLine("\nPressione ENTER para seguir...");
-        while(Console.ReadKey().Key != ConsoleKey.Enter) {};
+
+        while(Console.ReadKey(true).Key != ConsoleKey.Enter) {};
+
         Console.Clear();
     }
 
@@ -60,12 +67,9 @@ class Message
         Console.WriteLine("Informe a Operação desejada");
         Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
         ConsoleKeyInfo operacao = Console.ReadKey();
-        ConsoleKey[] validOperation = { ConsoleKey.A, ConsoleKey.S, ConsoleKey.M, ConsoleKey.D };
-        while (!validOperation.Contains(operacao.Key)) {
-            Console.WriteLine("\nInforme uma operação válida!");
-            Console.WriteLine(@"(A-Adição / S-Subtração / M-Multiplicação / D-Divisão): ");
-            operacao = Console.ReadKey();
-        }
+
+        operacao = Validacao.ValidarOperacao(operacao);
+
         Console.WriteLine("\nInforme a segunda parcela da operação: ");
         decimal parcela02 = Convert.ToDecimal(Console.ReadLine());
 
@@ -78,7 +82,10 @@ class Message
 
     public void ExibirHistorico() {
         Console.WriteLine("Pressione ENTER para exibir a lista do histórico de operações...");
+        Console.WriteLine();
+
         while (Console.ReadKey(true).Key != ConsoleKey.Enter) {}
+        
         Calculo.obterHistorico();
         RetornarAoMenu();
     }
