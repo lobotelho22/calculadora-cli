@@ -7,16 +7,18 @@
         inicio.Instrucoes();
 
         inicio.MainMenu();
-
         ConsoleKeyInfo selecao = Console.ReadKey();
+        
         while(selecao.Key != ConsoleKey.Q) {
+        
             if (selecao.Key == ConsoleKey.D1 ) {
                 Console.Clear();
                 inicio.Calcular();
                 selecao = Console.ReadKey();
             }
             else if (selecao.Key == ConsoleKey.D2) {
-                Console.WriteLine("\nDOIS!");
+                Console.Clear();
+                inicio.RecuperarHistorico();                
                 selecao = Console.ReadKey();
             }
             else if (selecao.Key == ConsoleKey.D3) {
@@ -29,6 +31,7 @@
                 selecao = Console.ReadKey();
             }
         }
+        
         Console.Clear();
     }
 }
